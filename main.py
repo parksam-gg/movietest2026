@@ -83,3 +83,30 @@ graph_section(
     insight="",  # 이 그래프로 알 수 있는 것 한 문장을 여기에 적어 주세요.
     key="fig_genre_donut",
 )
+
+
+# ──────────────────────────────────────────────
+# 그래프 2. 장르 안의 영화 (트리맵, 칸 크기 = 총 관객)
+# ──────────────────────────────────────────────
+fig2 = px.treemap(
+    df,
+    path=["genre", "movieNm"],
+    values="total_audi",
+    color="genre",
+    title="장르별 영화 트리맵 (칸 크기 = 총 관객)",
+)
+fig2.update_traces(
+    textinfo="label",
+    hovertemplate="<b>%{label}</b><br>총 관객: %{value:,}명<extra></extra>",
+)
+fig2.update_layout(
+    height=650,
+    margin=dict(t=60, b=20, l=20, r=20),
+)
+
+graph_section(
+    "2. 장르 안의 영화 - 총 관객 트리맵",
+    fig2,
+    insight="",  # 이 그래프로 알 수 있는 것 한 문장을 여기에 적어 주세요.
+    key="fig_genre_treemap",
+)
